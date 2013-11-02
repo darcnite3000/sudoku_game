@@ -18,15 +18,16 @@ class @SudokuHandler
     @board.on 'click', '.cell', (event)=>
       event.preventDefault()
       cell = $(event.target)
-      @board.find('.cell.highlight').removeClass('highlight')
-      cell.addClass('highlight')
-      @getAvailableValuesForCell cell.data('col'), cell.data('row'), (data)=>
-        console.log data
-        @board.find('.available .value')
-          .addClass('unavailable')
-          .filter(->
-            $.inArray(parseInt($(this).data('val')), data) >= 0
-          ).removeClass('unavailable')
+      unless cell.data('locked')
+        @board.find('.cell.highlight').removeClass('highlight')
+        cell.addClass('highlight')
+        @getAvailableValuesForCell cell.data('col'), cell.data('row'), (data)=>
+          console.log data
+          @board.find('.available .value')
+            .addClass('unavailable')
+            .filter(->
+              $.inArray(parseInt($(this).data('val')), data) >= 0
+            ).removeClass('unavailable')
   getCellList: ->
     cells = []
     @board.find('.cell').each (i, elem)->

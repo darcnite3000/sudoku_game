@@ -3,7 +3,7 @@
   <% 9.times do |row| %>
   <div class="row row-<%= row %>">
     <% @puzzle.row(row).to_a.each_with_index do |value,col| %>
-    <div class="cell col-<%= col %>" data-row="<%= row %>" data-col="<%= col %>" ><%= value==0 ? "" : value %></div>
+    <div class="cell col-<%= col %>" data-row="<%= row %>" data-col="<%= col %>" data-locked="<%= value==0 ? false : true %>" ><%= value==0 ? "" : value %></div>
     <% end %>
   </div>
   <% end %>

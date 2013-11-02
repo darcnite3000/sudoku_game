@@ -47,8 +47,8 @@ module Sudoku
     end
     
     def available_values x, y
-      r,c,b = cell_groups x, y
-      cell = @cells[coord_to_pos x, y]
+      r,c,b = cell_groups x.to_i, y.to_i
+      cell = @cells[coord_to_pos x.to_i, y.to_i]
       values = (1..9).to_a - r.to_a - c.to_a - b.to_a
       if cell != 0
         values = values + [cell]
@@ -57,23 +57,23 @@ module Sudoku
     end
     
     def cell_groups x, y
-      return row(y), column(x), block(Blocks[coord_to_pos x, y])
+      return row(y.to_i), column(x.to_i), block(Blocks[coord_to_pos x.to_i, y.to_i])
     end
     
     def column x
       group = CellGroup.new
-      x.step(80,9){|i| group << @cells[i] }
+      x.to_i.step(80,9){|i| group << @cells[i] }
       group
     end
     
     def row y
-      CellGroup.new(@cells[(y*9)..((y+1)*9)])
+      CellGroup.new(@cells[(y.to_i*9)..((y.to_i+1)*9)])
     end
     
     def block position
       group = CellGroup.new
       @cells.each_index do |index|
-        group << @cells[index] if Blocks[index] == position
+        group << @cells[index] if Blocks[index] == position.to_i
       end
       group
     end
