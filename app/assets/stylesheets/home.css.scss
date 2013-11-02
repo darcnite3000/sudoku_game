@@ -1,0 +1,62 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$cell-font-color: #555;
+$cell-background-color: #ccc;
+$cell-size: 40px;
+$cell-font-size: $cell-size * .75;
+$border-size: $cell-size / 20;
+$row-width: ($cell-size + $border-size)*9;
+$board-border-color: #fff;
+
+.board{
+  overflow: auto;
+  color: $cell-font-color;
+  width: $row-width + $border-size;
+  border-top: $border-size solid $board-border-color;
+  border-right: $border-size solid $board-border-color;
+  .row{
+    overflow:auto;
+    width: $row-width;
+    float:left;
+  }
+  .cell{
+    color: $cell-font-color;
+    background: $cell-background-color;
+    cursor: pointer;
+    &:hover{
+      color: lighten($cell-font-color, 10%);
+      background: lighten($cell-background-color,10%);
+    }
+    width: $cell-size;
+    height: $cell-size;
+    font-size: $cell-font-size;
+    line-height: $cell-size;
+    border-left: $border-size solid $board-border-color;
+    border-bottom: $border-size solid $board-border-color;
+    text-align:center;
+    float: left;
+  }
+  .available{
+    .value{
+      display: block;
+      font-size: $cell-font-size;
+      line-height: $cell-size;
+      cursor: pointer;
+      width: $cell-size;
+      text-align: center;
+      border-right: $border-size solid transparent;
+      float:left;
+      &.unavailable{
+        cursor: not-allowed;
+      }
+    }
+  }
+  .unavailable{
+    color: lighten($cell-font-color, 30%);
+  }
+  .highlight{
+    color: lighten($cell-font-color, 10%);
+    background: lighten($cell-background-color,10%);
+  }
+}

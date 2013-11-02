@@ -1,0 +1,15 @@
+<h1>Sudoku</h1>
+<div id="board" class="board">
+  <% 9.times do |row| %>
+  <div class="row row-<%= row %>">
+    <% @puzzle.row(row).to_a.each_with_index do |value,col| %>
+    <div class="cell col-<%= col %>" data-row="<%= row %>" data-col="<%= col %>" ><%= value==0 ? "" : value %></div>
+    <% end %>
+  </div>
+  <% end %>
+  <div class="available">
+    <% (1..9).each do |val| %>
+    <span class="value" data-val="<%= val %>"><%= val %></span>
+    <% end %>
+  </div>
+</div>
