@@ -3,7 +3,7 @@
   <% 9.times do |row| %>
   <div class="row row-<%= row %>">
     <% @puzzle.row(row).to_a.each_with_index do |value,col| %>
-    <div class="cell col-<%= col %>" data-row="<%= row %>" data-col="<%= col %>" data-locked="<%= value==0 ? false : true %>" ><%= value==0 ? "" : value %></div>
+    <div class="cell col-<%= col %> <%= value==0 ? '' : 'locked' %>" data-row="<%= row %>" data-col="<%= col %>" ><%= value==0 ? "" : value %></div>
     <% end %>
   </div>
   <% end %>
@@ -12,4 +12,10 @@
     <span class="value" data-val="<%= val %>"><%= val %></span>
     <% end %>
   </div>
+  <div class="controls">
+    <a href="#" class="reset">Reset</a>
+  </div>
+</div>
+<div class="instructions">
+  <p>The goal of sudoku is to fill in all the cells.</p><p>Each row, column and block must have the numbers 1-9 once.</p>
 </div>

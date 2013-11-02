@@ -8,19 +8,42 @@ $cell-font-size: $cell-size * .75;
 $border-size: $cell-size / 20;
 $row-width: ($cell-size + $border-size)*9;
 $board-border-color: #fff;
-
+.instructions{
+  font-color: $cell-font-color;
+  font-size: $cell-font-size*.75;
+  padding: 0 1em;
+  float: left;
+  width:$row-width;
+}
 .board{
   overflow: auto;
+  padding-bottom: .5em;
+  float:left;
   color: $cell-font-color;
   width: $row-width + $border-size;
-  border-top: $border-size solid $board-border-color;
   border-right: $border-size solid $board-border-color;
   .row{
     overflow:auto;
     width: $row-width;
     float:left;
+    &:nth-child(3n+1){
+      .cell{
+        border-top: $border-size solid darken($board-border-color,50%);
+      }
+    }
+    &:first-child{
+      .cell{
+        border-top: 0 solid $board-border-color;
+      }
+    }
   }
   .cell{
+    &:nth-child(3n+1){
+      border-left: $border-size solid darken($board-border-color,50%);
+    }
+    &:first-child{
+      border-left: $border-size solid $board-border-color;
+    }
     color: $cell-font-color;
     background: $cell-background-color;
     cursor: pointer;
@@ -33,11 +56,12 @@ $board-border-color: #fff;
     font-size: $cell-font-size;
     line-height: $cell-size;
     border-left: $border-size solid $board-border-color;
-    border-bottom: $border-size solid $board-border-color;
+    border-top: $border-size solid $board-border-color;
     text-align:center;
     float: left;
   }
   .available{
+    clear: both;
     .value{
       display: block;
       font-size: $cell-font-size;
@@ -52,8 +76,43 @@ $board-border-color: #fff;
       }
     }
   }
+  .controls{
+    clear: both;
+    .reset{
+      color: $cell-font-color;
+      text-shadow: 1px 1px 1px invert($cell-font-color);
+      box-shadow:2px 2px 1px invert($cell-font-color);
+      font-size: $cell-font-size*.75;
+      background: $cell-background-color;
+      text-decoration: none;
+      display: block;
+      float: left;
+      padding: .3em .8em;
+      &:hover{
+        color: lighten($cell-font-color, 8%);
+        background: lighten($cell-background-color, 5%);
+        text-shadow: 1px 1px 3px invert($cell-font-color);
+        box-shadow:2px 2px 3px invert($cell-font-color);
+      }
+
+      &:active{
+        color: darken($cell-font-color, 8%);
+        background: darken($cell-background-color, 5%);
+        text-shadow: 1px 1px 0px invert($cell-font-color);
+        box-shadow:2px 2px 0px invert($cell-font-color);
+      }
+    }
+  }
   .unavailable{
     color: lighten($cell-font-color, 30%);
+  }
+  .locked{
+    color: darken($cell-font-color, 10%);
+    background: darken($cell-background-color,10%);
+    &:hover{
+      color: darken($cell-font-color, 5%);
+      background: darken($cell-background-color,5%);
+    }
   }
   .highlight{
     color: lighten($cell-font-color, 10%);

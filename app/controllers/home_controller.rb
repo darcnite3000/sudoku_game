@@ -2,8 +2,24 @@ require 'sudoku'
 require 'json'
 class HomeController < ApplicationController
   def index
-    @puzzle = Sudoku::Generator.generate 15
+    redirect_to :generate_medium
   end
+  
+  def easy_puzzle
+    @puzzle = Sudoku::Generator.generate 30
+    render :index
+  end
+  
+  def medium_puzzle
+    @puzzle = Sudoku::Generator.generate 20
+    render :index
+  end
+
+  def hard_puzzle
+    @puzzle = Sudoku::Generator.generate 15
+    render :index
+  end
+  
   def values
     puzzle = Sudoku::Puzzle.new params[:cells]
     

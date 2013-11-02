@@ -1,5 +1,8 @@
 SudokuGame::Application.routes.draw do
-  post 'sudoku/values' => 'home#values'
+  post 'sudoku/values' => 'home#values', as: 'available_values'
+  get 'easy' => 'home#easy_puzzle', as: 'generate_easy'
+  get 'medium' => 'home#medium_puzzle', as: 'generate_medium'
+  get 'hard' => 'home#hard_puzzle', as: 'generate_hard'
   
   root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.

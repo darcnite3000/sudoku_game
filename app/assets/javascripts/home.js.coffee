@@ -8,6 +8,9 @@ $ ->
 class @SudokuHandler
   constructor: (board_elem = '#board')->
     @board = $(board_elem)
+    @board.on 'click', '.controls .reset', (event)=>
+      event.preventDefault()
+      @board.find('.cell').filter((elem)->!$(this).hasClass('locked')).text('')
     @board.on 'click', '.available .value', (event)=>
       event.preventDefault()
       value = $(event.target)
@@ -18,7 +21,7 @@ class @SudokuHandler
     @board.on 'click', '.cell', (event)=>
       event.preventDefault()
       cell = $(event.target)
-      unless cell.data('locked')
+      unless cell.hasClass('locked')
         @board.find('.cell.highlight').removeClass('highlight')
         cell.addClass('highlight')
         @getAvailableValuesForCell cell.data('col'), cell.data('row'), (data)=>
