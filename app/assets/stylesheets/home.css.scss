@@ -84,8 +84,7 @@ $board-border-color: #fff;
       box-shadow:2px 2px 1px invert($cell-font-color);
       font-size: $cell-font-size*.75;
       background: $cell-background-color;
-      text-decoration: none;
-      display: block;
+      cursor: pointer;
       float: left;
       padding: .3em .8em;
       &:hover{

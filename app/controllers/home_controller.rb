@@ -8,16 +8,22 @@ class HomeController < ApplicationController
   def easy_puzzle
     @puzzle = Sudoku::Generator.generate 30
     render :index
+  rescue Sudoku::Unsolvable
+    render :unsolvable
   end
   
   def medium_puzzle
     @puzzle = Sudoku::Generator.generate 20
     render :index
+  rescue Sudoku::Unsolvable
+    render :unsolvable
   end
 
   def hard_puzzle
     @puzzle = Sudoku::Generator.generate 15
     render :index
+  rescue Sudoku::Unsolvable
+    render :unsolvable
   end
   
   def values
